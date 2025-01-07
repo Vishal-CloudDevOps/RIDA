@@ -47,15 +47,15 @@ jobs:
     - name: Configure AWS Credentials using OIDC
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: arn:aws:iam::YOUR_ACCOUNT_ID:role/YOUR_ROLE_NAME
-        aws-region: us-east-1
+        role-to-assume: arn:aws:iam::099269900176:role/OpenIDConnectRoleRIDA
+        aws-region: ap-south-1
     
     - name: Create Code Deploy
       id: deploy
       uses: webfactory/create-aws-codedeploy-deployment@v1.0.2
       with:
-        application: YoutubeDemoApplication
-        deployment-group: Dev-DG
+        application: GithubActionsXCodedeploy
+        deployment-group: DevGroup
 
     - name: Print Commit Message
       uses: peter-evans/commit-comment@v2
