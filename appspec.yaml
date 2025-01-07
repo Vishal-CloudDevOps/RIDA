@@ -1,13 +1,23 @@
 version: 0.0
 os: linux
 files:
-  - source: webapp-sample/
+  - source: build/libs/your-app.war
     destination: /Home
     overwrite: true
 file_exists_behavior: OVERWRITE
 branch_config:
     wip\/.*: ~ 
     main:
-        deploymentGroupName: DevGroup
-        deploymentGroupConfig:
-            serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
+        Dev:
+            deploymentGroupName: DevGroup
+            deploymentGroupConfig:
+                serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
+        TST:
+            deploymentGroupName: TSTGroup
+            deploymentGroupConfig:
+                serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRoleTST
+        Prod:
+            deploymentGroupName: ProdGroup
+            deploymentGroupConfig:
+                serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRoleProd
+
