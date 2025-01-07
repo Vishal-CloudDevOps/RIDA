@@ -55,8 +55,6 @@ jobs:
       uses: webfactory/create-aws-codedeploy-deployment@v0.2.2
       with:
         application: GithubActionsXCodedeploy
-        deployment-group: DevGroup
-
     - name: Print Commit Message
       uses: peter-evans/commit-comment@v2
       with:
