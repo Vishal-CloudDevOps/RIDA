@@ -43,12 +43,6 @@ jobs:
 
     - name: List directory
       run: ls -al 
-    - name: Verify `appspec.yml` presence
-      run: |
-       if [ ! -f "appspec.yml" ]; then
-        echo "appspec.yml not found!"
-        exit 1
-       fi
       
     - name: Configure AWS Credentials using OIDC
       uses: aws-actions/configure-aws-credentials@v1
