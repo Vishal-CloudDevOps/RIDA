@@ -45,7 +45,7 @@ jobs:
       run: ls -al 
     - name: Verify `appspec.yml` presence
       run: |
-       if [ ! -f "appspec.yaml" ]; then
+       if [ ! -f "appspec.yml" ]; then
         echo "appspec.yml not found!"
         exit 1
        fi
