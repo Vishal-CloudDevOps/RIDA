@@ -6,20 +6,19 @@ files:
     overwrite: true
 file_exists_behavior: OVERWRITE
 branch_config:
-  wip\/.*: ~ 
-  main:
-    Dev:
-      deploymentGroupName: DevGroup
-      deploymentGroupConfig:
-        serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
-    TST:
-      deploymentGroupName: TSTGroup
-      deploymentGroupConfig:
-        serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployRole
-    Prod:
-      deploymentGroupName: ProdGroup
-      deploymentGroupConfig:
-        serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRoleProd
+    wip\/.*: ~ 
+    main:
+       Dev:
+        deploymentGroupName: DevGroup
+        deploymentGroupConfig:
+            serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
+       TST:
+        deploymentGroupName: TSTGroup
+        deploymentGroupConfig:
+            serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployRole
+
+            
+
 
 
 
