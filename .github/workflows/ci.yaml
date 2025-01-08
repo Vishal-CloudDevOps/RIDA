@@ -55,7 +55,7 @@ jobs:
       uses: webfactory/create-aws-codedeploy-deployment/create-deployment@v0.5.0
       with:
         application: GithubActionsXCodedeploy
-        #serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
+        #serviceRoleArn: 
 
     - name: Print Commit Message
       uses: peter-evans/commit-comment@v2
@@ -92,7 +92,7 @@ jobs:
       with:
         application: TSTAPP
         deployment-group: TSTGroup
-        #serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRoleTST
+        #serviceRoleArn:
 
     - name: Print Commit Message for Test
       uses: peter-evans/commit-comment@v2
