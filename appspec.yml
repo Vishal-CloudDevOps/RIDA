@@ -15,5 +15,5 @@ branch_config:
         TST:
         deploymentGroupName: TSTGroup
         deploymentGroupConfig:
-            serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
+            serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployRole
             
