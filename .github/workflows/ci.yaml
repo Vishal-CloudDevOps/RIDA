@@ -45,7 +45,7 @@ jobs:
       run: ls -al 
       
     - name: Configure AWS Credentials using OIDC
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         role-to-assume: arn:aws:iam::099269900176:role/OpenIDConnectRoleRIDA
         aws-region: ap-south-1
