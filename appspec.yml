@@ -19,4 +19,5 @@ branch_config:
         Prod:
             deploymentGroupName: ProdGroup
             deploymentGroupConfig:
-                serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRoleProd
+                serviceRoleArn: arn:aws:iam::099269900176:role/OpenIDConnectRoleRIDA 
+                #arn:aws:iam::099269900176:role/CodedeployCustomRoleProd
