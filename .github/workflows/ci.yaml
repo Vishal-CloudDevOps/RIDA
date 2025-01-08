@@ -50,13 +50,13 @@ jobs:
         role-to-assume: arn:aws:iam::099269900176:role/OpenIDConnectRoleRIDA
         aws-region: ap-south-1
     
-    
     - name: Create Code Deploy
       id: deploy
       uses: webfactory/create-aws-codedeploy-deployment@v0.2.2
       with:
         application: GithubActionsXCodedeploy
         serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
+
     - name: Print Commit Message
       uses: peter-evans/commit-comment@v2
       with:
@@ -92,6 +92,7 @@ jobs:
       with:
         application: YoutubeDemoApplication
         deployment-group: TST-DG
+        serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRoleTST
 
     - name: Print Commit Message for Test
       uses: peter-evans/commit-comment@v2
