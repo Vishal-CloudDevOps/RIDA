@@ -11,12 +11,12 @@ branch_config:
     wip\/.*: ~ 
     main:
         
-    DevGroup:
+      DevGroup:
         deploymentGroupName: DevGroup
         deploymentGroupConfig:
             serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
-    TSTGroup:
-      deploymentGroupConfig:
+      TSTGroup:
+        deploymentGroupConfig:
         serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
 
       
