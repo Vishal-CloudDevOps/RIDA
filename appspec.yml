@@ -7,18 +7,11 @@ files:
 file_exists_behavior: OVERWRITE
 branch_config:
   main:
-    dev:
+  
       deploymentGroupName: DevGroup
       deploymentGroupConfig:
         serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
-    test:
-      deploymentGroupName: TestDeploymentGroup
-      deploymentGroupConfig:
-        serviceRoleArn: arn:aws:iam::ACCOUND_ID:role/CodeDeployTestApplication
-    prod:
-      deploymentGroupName: ProdDeploymentGroup
-      deploymentGroupConfig:
-        serviceRoleArn: arn:aws:iam::ACCOUND_ID:role/CodeDeployProdApplication
+
 
 
 
