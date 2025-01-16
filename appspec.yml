@@ -16,8 +16,7 @@ branch_config:
         deploymentGroupName: TSTDeploy
         deploymentGroupConfig:
             serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
-            ec2TagFilters:
-                - { Type: KEY_AND_VALUE, Key: hostname, Value: phobos.stage }
+           
 
 
 
