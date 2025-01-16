@@ -1,7 +1,5 @@
 version: 0.0
 os: linux
-version: 0.0
-os: linux
 files:
   - source: dist/lib/Addition.jar
     destination: /var/www/html/
@@ -10,7 +8,12 @@ file_exists_behavior: OVERWRITE
 branch_config:
     wip\/.*: ~ 
     main:
+     DevGroup:
         deploymentGroupName: DevGroup
+        deploymentGroupConfig:
+            serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
+     TSTGroup:
+        deploymentGroupName: TSTGroup
         deploymentGroupConfig:
             serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
      
