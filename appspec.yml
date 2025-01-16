@@ -8,14 +8,16 @@ file_exists_behavior: OVERWRITE
 branch_config:
     wip\/.*: ~ 
     main:
-        Dev:
-           deploymentGroupName: DevGroup
-           deploymentGroupConfig:
-              serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
-        TST:
-           deploymentGroupName: TSTGroup
-           deploymentGroupConfig:
-              serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
+        deploymentGroupName: DevGroup
+        deploymentGroupConfig:
+            serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
+
+    '.*':
+        deploymentGroupName: TSTDeploy
+        deploymentGroupConfig:
+            serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
+            ec2TagFilters:
+                - { Type: KEY_AND_VALUE, Key: hostname, Value: phobos.stage }
 
 
 
