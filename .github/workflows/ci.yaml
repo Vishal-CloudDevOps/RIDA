@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [Dev, TST, Prod]
 
     steps:
     - name: Checkout code
