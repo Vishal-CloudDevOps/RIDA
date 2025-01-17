@@ -30,7 +30,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build # Ensure the deployment job waits for the build job to complete
-    environment: Dev
+    environment:
+          name: dev
+          url: https://your-dev-url.com
+    run: |
+          echo "Deploying to Dev environment"
+    
     permissions:
       id-token: write
       contents: read
