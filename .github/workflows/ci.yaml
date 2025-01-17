@@ -33,10 +33,7 @@ jobs:
   
     environment:
           name: dev
-          url: https://your-dev-url.com
-  run: |
-          echo "Deploying to Dev environment"
-    
+          url: https://your-dev-url.com   
     permissions:
       id-token: write
       contents: read
