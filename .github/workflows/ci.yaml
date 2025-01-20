@@ -44,6 +44,8 @@ jobs:
 
     - name: List directory
       run: ls -al 
+    - name: Copy AppSpec File for Dev
+      run: cp appspec-dev.yml appspec.yml
       
     - name: Configure AWS Credentials using OIDC
       uses: aws-actions/configure-aws-credentials@v2
