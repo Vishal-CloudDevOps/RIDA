@@ -1,4 +1,4 @@
-name: Java CI with Ant
+name: Java CI and Deploy
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
         name: addition-jar
         path: dist/lib/Addition.jar
 
-  deploy:
+  deploy-dev:
     runs-on: ubuntu-latest
     needs: build
   
@@ -42,8 +42,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: List directory
-      run: ls -al 
     - name: Copy AppSpec File for Dev
       run: cp appspec-dev.yml appspec.yml
       
@@ -55,7 +53,7 @@ jobs:
     
     - name: Create Code Deploy
       id: deploy
-      uses: webfactory/create-aws-codedeploy-deployment@v0.5.0
+      uses: webfactory/create-aws-codedeploy-deployment@v0.4.0  # Use the appropriate version
       with:
         application: GithubActionsXCodedeploy
         appspec-file: appspec.yml
@@ -68,11 +66,13 @@ jobs:
         body: |
           @${{ github.actor }} this was deployed as ${{ steps.deploy.outputs.deploymentId }} to group `${{ steps.deploy.outputs.deploymentGroupName }}`.
 
-  deploy-test:
+  deploy-tst:
     runs-on: ubuntu-latest
-    #needs: deploy
-    environment: AWS_Environment
-
+    needs: build
+  
+    environment:
+      name: tst
+      url: https://your-prod-url.com   
     permissions:
       id-token: write
       contents: read
@@ -81,27 +81,26 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: List directory
-      run: ls -al 
-
+    - name: Copy AppSpec File for Prod
+      run: cp appspec-tst.yml appspec.yml
+      
     - name: Configure AWS Credentials using OIDC
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         role-to-assume: arn:aws:iam::099269900176:role/OpenIDConnectRoleRIDA
         aws-region: ap-south-1
     
-    - name: Create Code Deploy for Test
-      id: deploy-test
-      uses: webfactory/create-aws-codedeploy-deployment@v0.5.0
+    - name: Create Code Deploy
+      id: deploy
+      uses: webfactory/create-aws-codedeploy-deployment@v0.4.0  # Use the appropriate version
       with:
-        application: TSTAPP
-        deployment-group: TSTGroup
-        appspec-file: appspec-tst.yml
+        application: GithubActionsXCodedeploy
+        appspec-file: appspec.yml
         #serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
 
-    - name: Print Commit Message for Test
+    - name: Print Commit Message
       uses: peter-evans/commit-comment@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
-          @${{ github.actor }} this was deployed as ${{ steps.deploy-test.outputs.deploymentId }} to group `${{ steps.deploy-test.outputs.deploymentGroupName }}`.
+          @${{ github.actor }} this was deployed as ${{ steps.deploy.outputs.deploymentId }} to group `${{ steps.deploy.outputs.deploymentGroupName }}`.
