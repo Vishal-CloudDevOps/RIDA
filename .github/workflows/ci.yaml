@@ -67,7 +67,7 @@ jobs:
 
   deploy-test:
     runs-on: ubuntu-latest
-    needs: deploy
+    #needs: deploy
     environment: AWS_Environment
 
     permissions:
