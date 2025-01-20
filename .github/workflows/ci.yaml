@@ -58,7 +58,7 @@ jobs:
       uses: webfactory/create-aws-codedeploy-deployment@v0.5.0
       with:
         application: GithubActionsXCodedeploy
-        appspec-file: appspec-dev.yml
+        appspec-file: appspec.yml
         #serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
 
     - name: Print Commit Message
