@@ -53,7 +53,7 @@ jobs:
     
     - name: Create Code Deploy
       id: deploy
-      uses: webfactory/create-aws-codedeploy-deployment@v1
+      uses: webfactory/create-aws-codedeploy-deployment@v0.5.0
       with:
         application: GithubActionsXCodedeploy
         serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
@@ -89,7 +89,7 @@ jobs:
     
     - name: Create Code Deploy for Test
       id: deploy-test
-      uses: webfactory/create-aws-codedeploy-deployment@v1
+      uses: webfactory/create-aws-codedeploy-deployment@v0.5.0
       with:
         application: TSTAPP
         deployment-group: TSTGroup
