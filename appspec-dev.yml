@@ -6,7 +6,7 @@ files:
     overwrite: true
 file_exists_behavior: OVERWRITE
 branch_config:
-    #wip\/.*: ~ 
+    wip\/.*: ~ 
     main:
         deploymentGroupName: DevGroup
         deploymentGroupConfig:
