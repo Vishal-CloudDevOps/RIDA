@@ -29,11 +29,11 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build # Ensure the deployment job waits for the build job to complete
+    needs: build
   
     environment:
-          name: dev
-          url: https://your-dev-url.com   
+      name: dev
+      url: https://your-dev-url.com   
     permissions:
       id-token: write
       contents: read
@@ -53,7 +53,7 @@ jobs:
     
     - name: Create Code Deploy
       id: deploy
-      uses: webfactory/create-aws-codedeploy-deployment/create-deployment@v0.5.0
+      uses: webfactory/create-aws-codedeploy-deployment@v1
       with:
         application: GithubActionsXCodedeploy
         serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
@@ -63,11 +63,11 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
-          @${{ github.actor }} this was deployed as [${{ steps.deploy.outputs.deploymentId }}](https://console.aws.amazon.com/codesuite/codedeploy/deployments/${{ steps.deploy.outputs.deploymentId }}?region=us-east-1) to group `${{ steps.deploy.outputs.deploymentGroupName }}`.
+          @${{ github.actor }} this was deployed as ${{ steps.deploy.outputs.deploymentId }} to group `${{ steps.deploy.outputs.deploymentGroupName }}`.
 
   deploy-test:
     runs-on: ubuntu-latest
-    #needs: deploy # Ensure the test deployment job waits for the dev deploy job to complete
+    needs: deploy
     environment: AWS_Environment
 
     permissions:
@@ -89,15 +89,15 @@ jobs:
     
     - name: Create Code Deploy for Test
       id: deploy-test
-      uses: webfactory/create-aws-codedeploy-deployment@v0.5.0
+      uses: webfactory/create-aws-codedeploy-deployment@v1
       with:
         application: TSTAPP
         deployment-group: TSTGroup
-        #serviceRoleArn:
+        #serviceRoleArn: arn:aws:iam::099269900176:role/CodedeployCustomRole
 
     - name: Print Commit Message for Test
       uses: peter-evans/commit-comment@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
-          @${{ github.actor }} this was deployed as [${{ steps.deploy-test.outputs.deploymentId }}](https://console.aws.amazon.com/codesuite/codedeploy/deployments/${{ steps.deploy-test.outputs.deploymentId }}?region=us-east-1) to group `${{ steps.deploy-test.outputs.deploymentGroupName }}`.
+          @${{ github.actor }} this was deployed as ${{ steps.deploy-test.outputs.deploymentId }} to group `${{ steps.deploy-test.outputs.deploymentGroupName }}`.
